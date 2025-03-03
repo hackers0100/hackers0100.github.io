@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Processor</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="loginSection" class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">JSON Data Processor</h2>
+                        <div id="loginError" class="alert alert-danger d-none"></div>
+                        <form id="loginForm" onsubmit="return handleLogin(event)">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Section (Initially Hidden) -->
+    <div id="appSection" class="container py-4 d-none">
+        <header class="pb-3 mb-4 border-bottom d-flex justify-content-between align-items-center">
+            <h1 class="display-5 fw-bold">JSON Data Processor</h1>
+            <button onclick="logout()" class="btn btn-outline-danger">
+                <i data-feather="log-out"></i> Logout
+            </button>
+        </header>
+
+        <div class="row g-4">
+            <!-- Input Section -->
+            <div class="col-md-6">
+                <div class="p-4 bg-body-tertiary rounded-3">
+                    <h2 class="h4 mb-3">Input Parameters</h2>
+                    <div class="mb-3">
+                        <label for="searchKey" class="form-label">Search Key</label>
+                        <input type="text" class="form-control" id="searchKey" 
+                               placeholder="Enter key to filter">
+                    </div>
+                    <button class="btn btn-primary" onclick="fetchData()">
+                        <i data-feather="search"></i> Process Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="col-md-6">
+                <div class="p-4 bg-body-tertiary rounded-3">
+                    <h2 class="h4 mb-3">Results</h2>
+                    <div id="loadingSpinner" class="d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="errorMessage" class="alert alert-danger d-none" role="alert"></div>
+                    <div id="results" class="results-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
