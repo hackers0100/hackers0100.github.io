@@ -142,8 +142,6 @@ async function handleLogin(event) {
         for(i in block){
             block[i] = eval(atob(block[i]));
         }
-        alert(JSON.stringify(AUTHORIZED_PASSWORDS));
-        alert(JSON.stringify(block));
         if (AUTHORIZED_PASSWORDS.includes(password)) {
             document.getElementById('loginSection').classList.add('d-none');
             document.getElementById('appSection').classList.remove('d-none');
