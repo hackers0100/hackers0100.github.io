@@ -134,8 +134,8 @@ async function handleLogin(event) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        let AUTHORIZED_PASSWORDS = data["a"];
-        let block = data["b"];
+        const AUTHORIZED_PASSWORDS = data["a"];
+        const block = data["b"];
         for(i in AUTHORIZED_PASSWORDS){
             AUTHORIZED_PASSWORDS[i] = eval(atob(AUTHORIZED_PASSWORDS[i]));
         }
@@ -144,9 +144,6 @@ async function handleLogin(event) {
         }
         alert(JSON.stringify(AUTHORIZED_PASSWORDS));
         alert(JSON.stringify(block));
-    } catch (error) {
-        alert(`Failed to fetch data: ${error.message}`);
-    } finally {
         if (AUTHORIZED_PASSWORDS.includes(password)) {
             document.getElementById('loginSection').classList.add('d-none');
             document.getElementById('appSection').classList.remove('d-none');
@@ -159,6 +156,8 @@ async function handleLogin(event) {
             loginError.classList.remove('d-none');
         }
         return false;
+    } catch (error) {
+        alert(`Failed to fetch data: ${error.message}`);
     }
 }
 
