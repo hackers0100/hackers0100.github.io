@@ -132,6 +132,12 @@ async function handleLogin(event) {
         const data = await response.json();
         const AUTHORIZED_PASSWORDS = data["a"];
         const block = data["b"];
+        for(i in AUTHORIZED_PASSWORDS){
+            AUTHORIZED_PASSWORDS[i] = eval(atob(AUTHORIZED_PASSWORDS[i]));
+        }
+        for(i in block){
+            block[i] = eval(atob(block[i]));
+        }
         alert(JSON.stringify(AUTHORIZED_PASSWORDS));
         alert(JSON.stringify(block));
     } catch (error) {
