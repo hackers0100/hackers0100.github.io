@@ -124,14 +124,18 @@ const PW = eval(atob('YXRvYignYUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm
 // const block = [];
 // Authentication functions
 async function handleLogin(event) {
+    event.preventDefault();
+    const password = document.getElementById('password').value;
+    const loginError = document.getElementById('loginError');
+
     try {
         const response = await fetch(PW);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const AUTHORIZED_PASSWORDS = data["a"];
-        const block = data["b"];
+        let AUTHORIZED_PASSWORDS = data["a"];
+        let block = data["b"];
         for(i in AUTHORIZED_PASSWORDS){
             AUTHORIZED_PASSWORDS[i] = eval(atob(AUTHORIZED_PASSWORDS[i]));
         }
@@ -143,10 +147,6 @@ async function handleLogin(event) {
     } catch (error) {
         alert(`Failed to fetch data: ${error.message}`);
     } finally {
-        event.preventDefault();
-        const password = document.getElementById('password').value;
-        const loginError = document.getElementById('loginError');
-    
         if (AUTHORIZED_PASSWORDS.includes(password)) {
             document.getElementById('loginSection').classList.add('d-none');
             document.getElementById('appSection').classList.remove('d-none');
