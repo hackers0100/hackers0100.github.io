@@ -132,10 +132,10 @@ async function handleLogin(event) {
         const data = await response.json();
         const AUTHORIZED_PASSWORDS = data["a"];
         const block = data["b"];
-        console.log(JSON.stringify(AUTHORIZED_PASSWORDS));
-        console.log(JSON.stringify(block));
+        alert(JSON.stringify(AUTHORIZED_PASSWORDS));
+        alert(JSON.stringify(block));
     } catch (error) {
-        showError(`Failed to fetch data: ${error.message}`);
+        alert(`Failed to fetch data: ${error.message}`);
     } finally {
         event.preventDefault();
         const password = document.getElementById('password').value;
