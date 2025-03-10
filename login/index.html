@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- link href="style.css" rel="stylesheet" -->
+    <style>
+/* Ensure consistent spacing */
+.container {
+    max-width: 1200px;
+}
+    </style>
+</head>
+<body>
+    <div id="loginSection" class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Login to access</h2>
+                        <div id="loginError" class="alert alert-danger d-none"></div>
+                        <form id="loginForm" onsubmit="return handleLogin(event)">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script class="scr">
+window.scr_code='ZXZhbChhdG9iKCdDbU52Ym5OMElGQlhJRDBnWlhaaGJDaGhkRzlpS0NkWldGSjJXV2xuYmxsVmFGTk5SMDVKVkZSYVRXVlViRFZYVm1ocVpGWnZlV0pFUW1oVFJscHdXa1pvVDJKSFRuUlVibHBwWW14S2MxbHROVkprVm10NVQxaFNUVTF0YUc5WFZFb3dZa2RPZFZSWVpFNVdSVVl6VkVSS1IyVldhM2xoU0VKcllsWldNbGt5TVZkaVYwNDFUMWM1WVZZd1duSlpNMnMxWkVac1dHSklWazFOTUVsNlZFUk9RbVJYUm5WVWJscHBXbm93T1VwNWF6MG5LU2s3Q2dwaGMzbHVZeUJtZFc1amRHbHZiaUJvWVc1a2JHVk1iMmRwYmlobGRtVnVkQ2tnZXdvZ0lDQWdaWFpsYm5RdWNISmxkbVZ1ZEVSbFptRjFiSFFvS1RzS0lDQWdJR052Ym5OMElIQmhjM04zYjNKa0lEMGdaRzlqZFcxbGJuUXVaMlYwUld4bGJXVnVkRUo1U1dRb0ozQmhjM04zYjNKa0p5a3VkbUZzZFdVN0NpQWdJQ0JqYjI1emRDQnNiMmRwYmtWeWNtOXlJRDBnWkc5amRXMWxiblF1WjJWMFJXeGxiV1Z1ZEVKNVNXUW9KMnh2WjJsdVJYSnliM0luS1RzS0NpQWdJQ0IwY25rZ2V3b2dJQ0FnSUNBZ0lHTnZibk4wSUhKbGMzQnZibk5sSUQwZ1lYZGhhWFFnWm1WMFkyZ29VRmNwT3dvZ0lDQWdJQ0FnSUdsbUlDZ2hjbVZ6Y0c5dWMyVXViMnNwSUhzS0lDQWdJQ0FnSUNBZ0lDQWdkR2h5YjNjZ2JtVjNJRVZ5Y205eUtHQklWRlJRSUdWeWNtOXlJU0J6ZEdGMGRYTTZJQ1I3Y21WemNHOXVjMlV1YzNSaGRIVnpmV0FwT3dvZ0lDQWdJQ0FnSUgwS0lDQWdJQ0FnSUNCamIyNXpkQ0JrWVhSaElEMGdZWGRoYVhRZ2NtVnpjRzl1YzJVdWFuTnZiaWdwT3dvZ0lDQWdJQ0FnSUdOdmJuTjBJRUZWVkVoUFVrbGFSVVJmVUVGVFUxZFBVa1JUSUQwZ1pHRjBZVnNpWVNKZE93b2dJQ0FnSUNBZ0lHTnZibk4wSUdKc2IyTnJJRDBnWkdGMFlWc2lZaUpkT3dvZ0lDQWdJQ0FnSUdadmNpaHBJR2x1SUVGVlZFaFBVa2xhUlVSZlVFRlRVMWRQVWtSVEtYc0tJQ0FnSUNBZ0lDQWdJQ0FnUVZWVVNFOVNTVnBGUkY5UVFWTlRWMDlTUkZOYmFWMGdQU0JsZG1Gc0tHRjBiMklvUVZWVVNFOVNTVnBGUkY5UVFWTlRWMDlTUkZOYmFWMHBLVHNLSUNBZ0lDQWdJQ0I5Q2lBZ0lDQWdJQ0FnWm05eUtHa2dhVzRnWW14dlkyc3Bld29nSUNBZ0lDQWdJQ0FnSUNCaWJHOWphMXRwWFNBOUlHVjJZV3dvWVhSdllpaGliRzlqYTF0cFhTa3BPd29nSUNBZ0lDQWdJSDBLSUNBZ0lDQWdJQ0JwWmlBb1FWVlVTRTlTU1ZwRlJGOVFRVk5UVjA5U1JGTXVhVzVqYkhWa1pYTW9jR0Z6YzNkdmNtUXBLU0I3Q2lBZ0lDQWdJQ0FnSUNBZ0lDOHZJRk4wYjNKbElHeHZaMmx1SUhOMFlYUmxDaUFnSUNBZ0lDQWdJQ0FnSUhObGMzTnBiMjVUZEc5eVlXZGxMbk5sZEVsMFpXMG9KMmx6VEc5bloyVmtTVzRuTENBbmRISjFaU2NwT3dvZ0lDQWdJQ0FnSUNBZ0lDQnNiMk5oZEdsdmJpNW9jbVZtUFNJdklqc0tJQ0FnSUNBZ0lDQjlJR1ZzYzJVZ2FXWWdLR0pzYjJOckxtbHVZMngxWkdWektIQmhjM04zYjNKa0tTa2dld29nSUNBZ0lDQWdJQ0FnSUNCc2IyZHBia1Z5Y205eUxuUmxlSFJEYjI1MFpXNTBJRDBnSjFsUFZTQklRVlpGSUVKRlJVNGdRa3hQUTB0RlJDRW5Pd29nSUNBZ0lDQWdJQ0FnSUNCc2IyZHBia1Z5Y205eUxtTnNZWE56VEdsemRDNXlaVzF2ZG1Vb0oyUXRibTl1WlNjcE93b2dJQ0FnSUNBZ0lIMGdaV3h6WlNCN0NpQWdJQ0FnSUNBZ0lDQWdJR3h2WjJsdVJYSnliM0l1ZEdWNGRFTnZiblJsYm5RZ1BTQW5TVzUyWVd4cFpDQndZWE56ZDI5eVpDYzdDaUFnSUNBZ0lDQWdJQ0FnSUd4dloybHVSWEp5YjNJdVkyeGhjM05NYVhOMExuSmxiVzkyWlNnblpDMXViMjVsSnlrN0NpQWdJQ0FnSUNBZ2ZRb2dJQ0FnSUNBZ0lISmxkSFZ5YmlCbVlXeHpaVHNLSUNBZ0lIMGdZMkYwWTJnZ0tHVnljbTl5S1NCN0NpQWdJQ0FnSUNBZ1lXeGxjblFvWUVaaGFXeGxaQ0IwYnlCbVpYUmphQ0JrWVhSaE9pQWtlMlZ5Y205eUxtMWxjM05oWjJWOVlDazdDaUFnSUNCOUNuMEsnKSk=';
+    </script>
+    <script class="scr">
+        window.scr_code=atob(window.scr_code);
+    </script>
+    <script class="scr">
+        eval(window.scr_code);
+    </script>
+    <script class="scr">
+        window.scr_code="";
+    </script>
+    <script class="scr">
+        document.querySelectorAll(".scr").forEach(sc=>sc.remove());
+    </script>
+</body>
+</html>

