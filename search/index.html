@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <link rel="prefetch" as="font" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=latin-ext">
+        <link rel="prefetch" as="font" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,400i,500,500i,600,600i,700,800,900&display=swap&subset=latin-ext">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css">
+        <link rel="stylesheet" type="text/css" href="https://content.search-redirect.com/style.css">
+        <style>
+        .settings-icon {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            cursor:pointer;
+            color: #999;
+        }
+        .settings-menu {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 50px;
+            background: #fff;
+            border: 1px solid #dcdcdc;
+            box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.08);
+            border-radius: 5px;
+            z-index: 1000;
+            color: #3c3c3c;
+        }
+        .settings-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .settings-menu li {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .settings-menu li:hover {
+            background-color: #f0f0f0;
+        }
+		#app_ {
+			position: fixed;
+			top: 0
+		}
+		</style>
+		<title>Search | Hackers HUB</title>
+	</head>
+	<body class="dark-mode">
+		<script type="text/javascript" src="three.r157.min.js"></script>
+		<div class="container">
+      <div id="app_" style="background: transparent; min-width: 100vw; margin-top: 3vh">
+          <section class="view-wrapper_">
+              <div>
+                  <div>
+                      <form action="https://google.com/search" method="get" class="search-bar" id="searchform">
+                          <div id="autosuggest" class="search-bar__autosuggest search-bar__container">
+                              <div>
+                                  <input id="search-suggest" name="q" type="text" class="search-bar__search" placeholder="Search the web" autofocus="autofocus" tabindex="0" autocomplete="off" style="border-radius: 50%">                                        
+                              </div>
+                          </div>
+                          <button type="submit" class="search-bar__submit">
+                              <i class="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                      </form>
+                  </div>
+              </div>
+          </section>
+      </div>
+    </div>
+		<script type="module" src="main.js"></script>
+	</body>
+</html>
