@@ -1,0 +1,321 @@
+:root {
+    --accent-color: #ff6704;
+    --background: #fff;
+}
+body{
+    color: #545454;
+    font-family: "Roboto",sans-serif;
+    background: #fff;
+    min-height: 750px;
+}
+body{
+    color: #545454;
+    font-family: "Roboto",sans-serif;
+    background: #fff;
+    min-height: 750px;
+}
+body.dark-mode{
+     background: #3c3c3c;
+    color: #fff;
+}
+section{
+    display: block;
+   ;
+}
+img{
+    border-style: none;
+}
+h5 {
+    font-family: "Raleway",sans-serif;
+    font-size: 22.4252929688px;
+    margin: 9px 0;
+}
+.container {
+    box-sizing: border-box;
+}
+#app {
+    color: #545454;
+    font-family: "Roboto",sans-serif;
+    background: inherit;
+    min-height: 750px;
+}
+.img-container {
+    width: 100%;
+    height: 254px;
+    margin-bottom: 0;
+    margin-top: 58px;
+}
+.img-container div {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.search-bar {
+    display: flex;
+    align-items: stretch;
+    height: 45px;
+    margin: 9px auto;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #dcdcdc;
+    border-radius: 22.5px;
+    background: #fff;
+    color: #676767;
+    max-width: 726px;
+    transition: all 120ms ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.08);
+    padding-right: 9px;
+}
+.search-bar__container {
+    background: transparent;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border: 0;
+    transition: all 100ms ease;
+}
+.search-bar__container>div:first-of-type {
+    height: 100%;
+}
+#autosuggest div{
+    height: 100%;
+}
+.search-bar__search {
+    padding: 0 13.5px;
+    border: 0;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    cursor: text;
+    outline: none;
+}
+.search-bar__submit {
+    color: #222;
+    width: 46px;
+    height: 45px;
+    padding: 0;
+    border: 0;
+    background-color: #337ab7;
+    background: transparent;
+    font-size: 15.75px;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 -1px;
+    transition: all 120ms ease;
+}
+.search-bar__submit {
+    order: -2;
+}
+.search-bar__submit svg {
+    position: relative;
+    right: 1px;
+}
+.search-bar__submit i {
+    position: relative;
+    right: 1px;
+}
+.search-bar__extra {
+    order: 3;
+    color: #dcdcdc;
+    align-self: center;
+    font-size: 11.0617283951px;
+    visibility: hidden;
+}
+[disabled] {
+    pointer-events: none;
+    opacity: .85;
+}
+.wdg--quick-links {
+    transition: opacity 180ms ease;
+    max-width: 100%;
+    margin: 4.5px auto;
+    padding: 9px 0;
+    box-shadow: none;
+    border-color: transparent;
+    border-radius: 2px;
+}
+.quick-links__container {
+    display: flex;
+    justify-content: center;
+}
+.shortcut-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   /* gap: 10px;
+    */
+    justify-content: center;
+    align-items: flex-start;
+}
+.shortcut-item {
+    position: relative;
+    border-radius: 10px;
+    color: #1d1d1d;
+}
+.shortcut-item-darkmode {
+    color: lightgray;
+}
+.shortcut-item a, .shortcut-item-add {
+    cursor: pointer;
+    padding: 20px 10px;
+    width: 140px;
+    display: inline-flex;
+    position: relative;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s;
+    background-position: top 10px right 5px;
+    color: inherit;
+    text-decoration: none;
+}
+.shortcut-icon {
+    width: 30px;
+    height: 30px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 100%;
+}
+.shortcut-title {
+    font-size: 10pt;
+    display: block;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color:inherit;
+}
+
+
+.shortcut-menu-toggle {
+    opacity: 0;
+    position: absolute;
+    right: 3px;
+    padding: 3px;
+    top: 10px;
+    width: auto;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    border: none;
+    transition: all 0.3s;
+    background: none;
+}
+.shortcut-menu-toggle img {
+    height: 26px;
+}
+.shortcut-item:hover {
+    background: #e5e7e8;
+    color:#3c3c3c;
+}
+
+.shortcut-item:hover .shortcut-menu-toggle {
+    opacity: 1;
+}
+.shortcut-menu-toggle:hover {
+    background: #cbcecf;
+}
+.shortcut-menu {
+    display: none;
+    width: 100%;
+    background: white;
+    box-shadow: 1px 1px 5px gray;
+    border-radius: 5px;
+    padding: 10px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.shortcut-menu.show {
+    display: block;
+}
+.shortcut-menu button.shortcut-control {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 5px 15px;
+    border: none;
+    background: none;
+    font-size: 10pt;
+}
+.shortcut-menu button.shortcut-control:hover {
+    background: #eee;
+}
+/* SHORTCUT MODAL */
+.shortcut-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    height: 100vh;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+}
+.shortcut-modal.show {
+    display: flex;
+}
+.shortcut-modal-container {
+    width: 500px;
+    max-width: 100%;
+    background: var(--background);
+    padding: 30px;
+    font-size: 10pt;
+    border-radius: 5px;
+}
+.shortcut-modal-heading {
+    margin: 0 0 15px;
+    font-size: 13pt;
+}
+.shortcut-modal form {
+    display: flex;
+    flex-direction: column;
+}
+.shortcut-modal input {
+    margin: 5px auto;
+}
+.shortcut-modal form label {
+    color: var(--accent-color);
+    font-size: 9pt;
+}
+.shortcut-modal form input[type="text"], .shortcut-modal form input[type="url"] {
+    border: 0;
+    padding: 8px 5px;
+    display: block;
+    width: 100%;
+    background: #eee;
+    outline: none;
+}
+.shortcut-modal form input[type="text"]:focus, .shortcut-modal form input[type="url"]:focus {
+    border-bottom: 2px solid var(--accent-color);
+}
+.shortcut-modal form .shortcut_add_controls {
+    text-align: right;
+}
+.shortcut-modal form input[type="button"], .shortcut-modal form input[type="submit"] {
+    background: none;
+    border: 1px solid #aaa;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.shortcut-modal form input[type="submit"] {
+    color: var(--background);
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+}
+.shortcut-modal form input[disabled] {
+    border-color: #ddd;
+    color: #777;
+    background: #eee;
+}
+#shortcut_add_cancel, #shortcut_add_submit{
+    cursor: pointer;
+}
