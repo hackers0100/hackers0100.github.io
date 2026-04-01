@@ -21,7 +21,7 @@ export async function onRequestPost(context) {
         console.error("Discord API Error:", response.status, errorBody);
         
         // Return the actual Discord error to the frontend for debugging
-        return Response.json({{ 
+        return Response.json({ 
             error: "Discord Error", 
             status: response.status,
             details: errorBody, headers: response.headers
