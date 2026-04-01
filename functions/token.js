@@ -1,7 +1,7 @@
 const CLIENT_ID = process.env.clid;
 const CLIENT_SECRET = process.env.clsec;
 
-export function onRequestPost(context) {
+export async function onRequestPost(context) {
 
   try {
     const response = await fetch(`https://discord.com/api/oauth2/token`, {
