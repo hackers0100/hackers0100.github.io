@@ -1,7 +1,8 @@
 export async function onRequestPost(context) {
   const CLIENT_ID = context.env.clid;
   const CLIENT_SECRET = context.env.clsec;
-  return Response.json({ code: context.data.code, od: JSON.stringify(context.data), ot: [CLIENT_ID, CLIENT_SECRET]});
+  const data = await context.request.json();
+  return Response.json({ code: data.code, od: JSON.stringify(data), ot: [CLIENT_ID, CLIENT_SECRET]});
   try {
     const response = await fetch(`https://discord.com/api/oauth2/token`, {
       method: 'POST',
@@ -10,7 +11,7 @@ export async function onRequestPost(context) {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         grant_type: 'authorization_code',
-        code: context.data.code,
+        code: data.code,
       }),
     });
 
