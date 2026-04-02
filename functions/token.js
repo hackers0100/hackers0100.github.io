@@ -27,8 +27,8 @@ export async function onRequestPost(context) {
             details: errorBody, headers: response.headers
         }, { status: response.status });
     }
-    const data = await response.json();
-    return Response.json({ access_token: data.access_token });
+    const res = await response.json();
+    return Response.json({ access_token: res.access_token });
   } catch (err) {
     console.error("Server Crash Prevented:", err);
     return Response.json({ error: "Internal Server Error", data: JSON.stringify(err, Object.getOwnPropertyNames(err)) }, { status: 500 });
