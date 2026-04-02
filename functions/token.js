@@ -31,6 +31,6 @@ export async function onRequestPost(context) {
     return Response.json({ access_token: data.access_token });
   } catch (err) {
     console.error("Server Crash Prevented:", err);
-    return Response.json({ error: "Internal Server Error", data: JSON.stringify(err, Object.getOwnPropertyNames(err)); }, { status: 500 });
+    return Response.json({ error: "Internal Server Error", data: JSON.stringify(err, Object.getOwnPropertyNames(err)) }, { status: 500 });
   }
 };
